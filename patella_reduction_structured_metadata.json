@@ -1,0 +1,267 @@
+{
+  "name": "3D Printed Patella Reduction Model",
+  "license": "Creative Commons Attribution CC_BY_4.0",
+  "DOI_NIH_3DPX": " 10.60705/3dpx/22804.1",
+  "image_atomized": [
+    "https://drive.google.com/file/d/1pWquUtt-59-18FUezPp3vgjcDjOSwysS/view?usp=drive_link ",
+    "https://docs.google.com/spreadsheets/d/1h6-oWWC659PGa9xp-0srAYZNEG5aWB4g/edit?usp=drive_link&ouid=117063845370629518967&rtpof=true&sd=true"
+  ],
+  "image_assembly": [
+    "https://drive.google.com/file/d/13t6kkBVhMiJ73t4HvmNwJiyL0WwY_wif/view?usp=drive_link",
+    "https://www.youtube.com/watch?v=DxuaFY34vbE&t=65s"
+  ],
+  "purchase_materials": "Patella_Reduction_Purchases_Itemized.xlsx",
+  "Keywords": [
+    "Patella dislocation ICD10: S83.0",
+    "CPT code: 27560, 27562",
+    "3D-printing",
+    "simulation model"
+  ],
+  "Abstract": "3D printed patella reduction model for medical training",
+
+  "print_data": [
+    {
+      "ID": "project-3D-patella-reduction-001",
+      "Name": "Anterior_Patella",
+      "Description": "Connects to posterior patella via 4x #2-56 screws",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Anterior_Patella.stl",
+      "FileSize_MB": 0.81,
+      "Patella_Traction_Model_Atomized_With_Annotations": 1,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 38.1,
+        "widthY_mm": 50.8,
+        "heightZ_mm": 6.0,
+        "filament_length_m": 1.84,
+        "filament_mass_g": 7,
+        "print_time_min": 52
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-002",
+      "Name": "Posterior_Patella",
+      "Description": "connects to anterior patella, place 1x #2-56 machine screw into 4x grooves",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Posterior_Patella.stl",
+      "FileSize_MB": 0.49,
+      "Patella_Traction_Model_Atomized_With_Annotations": 2,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 38.1,
+        "widthY_mm": 50.8,
+        "heightZ_mm": 9.3,
+        "filament_length_m": 2.4,
+        "filament_mass_g": 7,
+        "print_time_min": 63
+      }
+    },
+    {
+      "ID": "project-3D-patella-reduction-003",
+      "Name": "Axle Shaft",
+      "Description": "Used to hold elastic band (exercise band) in place via center slit, attaches to anterior leg via two circular openings. Print two",
+      "Authors": ["Spencer_Lord", "Garrett_Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Axle_Shaft.stl",
+      "FileSize_MB": 0.69,
+      "Patella_Traction_Model_Atomized_With_Annotations": 5,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 15.9,
+        "widthY_mm": 89.8,
+        "heightZ_mm": 12.7,
+        "filament_length_m": 2.62,
+        "filament_mass_g": 8,
+        "print_time_min": 71
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-004",
+      "Name": "Posterior Knee Joint",
+      "Description": "Posterior component of the knee sites along joint axis of lamp post, connects to anterior knee via 2x hinge pins and 2x latches",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Posterior_Knee_Joint_V2.stl",
+      "FileSize_MB": 1.3,
+      "Patella_Traction_Model_Atomized_With_Annotations": 9,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 76.2,
+        "widthY_mm": 67.7,
+        "heightZ_mm": 34.1,
+        "filament_length_m": 11.35,
+        "filament_mass_g": 34,
+        "print_time_min": 344
+      }
+    },
+    {
+      "ID": "project-3D-patella-reduction-005",
+      "Name": "Anterior Knee Joint",
+      "Description": "Sits along joint access of lamp post, connects to posterior knee via hinge pin and latch. Attaches to patella components via #6-32 1in. machine screw, #6-32 machine locking nut and 25/32 beveled faucet washer",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Anterior_Knee_Joint_V2.stl",
+      "FileSize_MB": 1.6,
+      "Patella_Traction_Model_Atomized_With_Annotations": 3,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 76.2,
+        "widthY_mm": 67.7,
+        "heightZ_mm": 34.5,
+        "filament_length_m": 12.98,
+        "filament_mass_g": 39,
+        "print_time_min": 392
+      }
+    },
+    {
+      "ID": "project-3D-patella-reduction-006",
+      "Name": "Clip",
+      "Description": "holds ratchet wheel in locked or unlocked position. Print two",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Clip.stl",
+      "FileSize_MB": 0.125,
+      "Patella_Traction_Model_Atomized_With_Annotations": 6,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 44.9,
+        "widthY_mm": 26.1,
+        "heightZ_mm": 4.8,
+        "filament_length_m": 0.57,
+        "filament_mass_g": 2,
+        "print_time_min": 16
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-007",
+      "Name": "Hinge Pin",
+      "Description": "Internal brace to hold the anterior and posterior knee joint together, print two",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Hinge_Pin.stl",
+      "FileSize_MB": 0.19,
+      " Patella_Traction_Model_Atomized_With_Annotations": 18,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 25.4,
+        "widthY_mm": 9.5,
+        "heightZ_mm": 8.5,
+        "filament_length_m": 0.4,
+        "filament_mass_g": 1.0,
+        "print_time_min": 11
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-008",
+      "Name": "Latch",
+      "Description": " External brace to hold the anterior and posterior knee joint together, print two ",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Latch.stl",
+      "FileSize_MB": 0.44,
+      "Patella_Traction_ModelAtomized_With_Annotations": 19,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 51.7,
+        "widthY_mm": 30.3,
+        "heightZ_mm": 25.4,
+        "filament_length_m": 2.02,
+        "filament_mass_g": 6,
+        "print_time_min": 55
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-009",
+      "Name": "Anterior Leg",
+      "Description": "Used for both the upper and lower anterior leg connects to the posterior leg via 4x #6-32 machine screws; print two components",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2025-09-03",
+      "FileFormat": "STL",
+      "FileName": "Anterior_Leg_V2.stl",
+      "FileSize_MB": 1.7,
+      "Patella_Traction_Model_Atomized_With_Annotations": 4,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "length_mm": 101.6,
+        "widthY_mm": 68.2,
+        "heightZ_mm": 34.1,
+        "filament_length_m": 18.2,
+        "filament_mass_g": 54,
+        "print_time_min": 465
+      }
+    },
+    {
+      "ID": "project-3D-patella-reduction-010",
+      "Name": "Posterior Leg",
+      "Description": "Used for both the upper and lower leg, connects to the posterior leg via 4x #6-32 machined screws",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Posterior_Leg_V2.stl",
+      "FileSize_MB": 1.1,
+      "Patella_Traction_Model_Atomized_With_Annotations": 8,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "lengthX_mm": 101.6,
+        "widthY_mm": 67.7,
+        "heightZ_mm": 34.1,
+        "filament_length_m": 20.62,
+        "filament_mass_g": 61,
+        "print_time_min": 537
+      }
+    },
+
+    {
+      "ID": "project-3D-patella-reduction-011",
+      "Name": "Ratchet Wheel",
+      "Description": "provides tension for tendon (elastic band) help hold axle shaft in the anterior portion of the upper and lower leg, need to print two",
+      "Authors": ["Spencer Lord", "Garrett Lord"],
+      "CreationDate": "2024-01-17",
+      "FileFormat": "STL",
+      "FileName": "Ratchet_Wheel.stl",
+      "FileSize_MB": 2.0,
+      " Patella_Traction_Model_Atomized_With_Annotations": 7,
+      "ModelVersion": 1.0,
+      "dimensions": {
+        "length_mm": 41.7,
+        "widthY_mm": 41.7,
+        "heightZ_mm": 15.9,
+        "filament_length_m": 2.37,
+        "filament_mass_g": 7,
+        "print_time_min": 55
+      }
+    }
+  ],
+
+  "PrintSettings": {
+    "material": "PLA",
+    "material_size_mm": 1.75,
+    "color": "gray",
+    "LayerHeight_mm": 0.2,
+    "Wall_thickness": 0.8,
+    "Top/bottom_thickness_mm": 0.8,
+    "InfillPercent": 20.0,
+    "SupportRequired": true,
+    "RaftRequired": true,
+    "NozzleTemp_celsius": 200,
+    "bedTemp_celsius": 55,
+    "bedGlue": true,
+    "Computer-aided design software": "Rhinoceros V8",
+    " Slicer Software": "Ultimaker Cura 5.10.1"
+  }
+}
