@@ -87,7 +87,7 @@
           "file_format": {
             "type": "string",
             "description": "File format of the 3D model",
-            "enum": ["STL", "OBJ", "PLY", "3MF", "AMF"]
+            "enum": ["STL", "OBJ", "PLY", "3MF", "AMF", "GCODE"]
           },
           "file_name": {
             "type": "string",
