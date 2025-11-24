@@ -1,4 +1,5 @@
 {
+  "$schema": "./model.schema.json",
   "name": "3D Printed Patella Reduction Model",
   "license": "Creative Commons Attribution CC_BY_4.0",
   "doi_nih_3dpx": " 10.60705/3dpx/22804.1",
