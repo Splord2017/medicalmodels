@@ -1,0 +1,74 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# IDE and Editor Files
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Node.js (if using any Node scripts)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# Large Binary Files (3D models, if not tracked)
+# Uncomment if you want to ignore STL files
+# *.stl
+# *.obj
+# *.ply
+# *.3mf
+# *.amf
+
+# Compressed Files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Documentation Build Files
+docs/_build/
+site/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local

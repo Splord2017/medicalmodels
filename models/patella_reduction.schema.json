@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/elliott/MedicalModels/models/patella_reduction.schema.json",
+  "title": "3D Printed Patella Reduction Model Schema",
+  "description": "JSON schema for validating 3D printed medical model metadata",
+  "type": "object",
+  "required": [
+    "name",
+    "license",
+    "print_data",
+    "print_settings"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the 3D printed model"
+    },
+    "license": {
+      "type": "string",
+      "description": "License information for the model"
+    },
+    "doi_nih_3dpx": {
+      "type": "string",
+      "description": "NIH 3D Print Exchange DOI identifier",
+      "pattern": "^\\s*10\\.60705/3dpx/[0-9]+\\.[0-9]+"
+    },
+    "image_atomized": {
+      "type": "array",
+      "description": "Array of URLs to atomized/detailed images",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "image_assembly": {
+      "type": "array",
+      "description": "Array of URLs to assembly images or videos",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "purchase_materials": {
+      "type": "string",
+      "description": "Reference to materials purchase list"
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Array of keywords and codes related to the model",
+      "items": {
+        "type": "string"
+      }
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Brief description of the model"
+    },
+    "print_data": {
+      "type": "array",
+      "description": "Array of individual 3D printable components",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "file_format",
+          "file_name",
+          "dimensions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the component",
+            "pattern": "^project-3D-patella-reduction-[0-9]{3}$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the component"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the component and its assembly instructions"
+          },
+          "authors": {
+            "type": "array",
+            "description": "Array of author names",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "creation_date": {
+            "type": "string",
+            "description": "Date when the component was created",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          },
+          "file_format": {
+            "type": "string",
+            "description": "File format of the 3D model",
+            "enum": ["STL", "OBJ", "PLY", "3MF", "AMF"]
+          },
+          "file_name": {
+            "type": "string",
+            "description": "Name of the 3D model file"
+          },
+          "file_size_mb": {
+            "type": "number",
+            "description": "File size in megabytes",
+            "minimum": 0
+          },
+          "patella_traction_model_atomized_with_annotations": {
+            "type": "integer",
+            "description": "Reference number in the atomized model annotations",
+            "minimum": 1
+          },
+          "model_version": {
+            "type": "number",
+            "description": "Version number of the model",
+            "minimum": 0
+          },
+          "dimensions": {
+            "type": "object",
+            "description": "Physical dimensions and printing specifications",
+            "required": [
+              "width_y_mm",
+              "height_z_mm",
+              "filament_length_m",
+              "filament_mass_g",
+              "print_time_min"
+            ],
+            "properties": {
+              "length_x_mm": {
+                "type": "number",
+                "description": "Length in millimeters (X-axis)",
+                "minimum": 0
+              },
+              "length_mm": {
+                "type": "number",
+                "description": "Length in millimeters (alternative to length_x_mm)",
+                "minimum": 0
+              },
+              "width_y_mm": {
+                "type": "number",
+                "description": "Width in millimeters (Y-axis)",
+                "minimum": 0
+              },
+              "height_z_mm": {
+                "type": "number",
+                "description": "Height in millimeters (Z-axis)",
+                "minimum": 0
+              },
+              "filament_length_m": {
+                "type": "number",
+                "description": "Length of filament required in meters",
+                "minimum": 0
+              },
+              "filament_mass_g": {
+                "type": "number",
+                "description": "Mass of filament required in grams",
+                "minimum": 0
+              },
+              "print_time_min": {
+                "type": "number",
+                "description": "Estimated print time in minutes",
+                "minimum": 0
+              }
+            },
+            "anyOf": [
+              {
+                "required": ["length_x_mm"]
+              },
+              {
+                "required": ["length_mm"]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "print_settings": {
+      "type": "object",
+      "description": "3D printing settings and configuration",
+      "required": [
+        "material",
+        "material_size_mm",
+        "layer_height_mm",
+        "infill_percent"
+      ],
+      "properties": {
+        "material": {
+          "type": "string",
+          "description": "3D printing material type",
+          "enum": ["PLA", "ABS", "PETG", "TPU", "NYLON", "ASA", "PC", "PVA", "HIPS"]
+        },
+        "material_size_mm": {
+          "type": "number",
+          "description": "Filament diameter in millimeters",
+          "enum": [1.75, 2.85, 3.0]
+        },
+        "color": {
+          "type": "string",
+          "description": "Material color"
+        },
+        "layer_height_mm": {
+          "type": "number",
+          "description": "Layer height in millimeters",
+          "minimum": 0.05,
+          "maximum": 0.5
+        },
+        "wall_thickness": {
+          "type": "number",
+          "description": "Wall thickness in millimeters",
+          "minimum": 0
+        },
+        "top_bottom_thickness_mm": {
+          "type": "number",
+          "description": "Top and bottom layer thickness in millimeters",
+          "minimum": 0
+        },
+        "infill_percent": {
+          "type": "number",
+          "description": "Infill percentage (0-100)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "support_required": {
+          "type": "boolean",
+          "description": "Whether support material is required"
+        },
+        "raft_required": {
+          "type": "boolean",
+          "description": "Whether a raft is required"
+        },
+        "nozzle_temp_celsius": {
+          "type": "number",
+          "description": "Nozzle temperature in Celsius",
+          "minimum": 150,
+          "maximum": 300
+        },
+        "bed_temp_celsius": {
+          "type": "number",
+          "description": "Bed temperature in Celsius",
+          "minimum": 0,
+          "maximum": 150
+        },
+        "bed_glue": {
+          "type": "boolean",
+          "description": "Whether bed adhesive/glue is required"
+        },
+        "computer_aided_design_software": {
+          "type": "string",
+          "description": "CAD software used to create the model"
+        },
+        "slicer_software": {
+          "type": "string",
+          "description": "Slicer software used to prepare the model for printing"
+        }
+      }
+    }
+  }
+}
