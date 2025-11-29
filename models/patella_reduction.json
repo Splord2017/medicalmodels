@@ -123,7 +123,7 @@
     {
       "id": "project-3d-patella-reduction-006",
       "name": "Clip",
-      "description": "holds ratchet wheel in locked or unlocked position. Print two",
+      "description": "Holds ratchet wheel in locked or unlocked position. Print two",
       "authors": ["Spencer Lord", "Garrett Lord"],
       "creation_date": "2024-01-17",
       "file_format": "STL",
@@ -163,7 +163,7 @@
     {
       "id": "project-3d-patella-reduction-008",
       "name": "Latch",
-      "description": " External brace to hold the anterior and posterior knee joint together, print two ",
+      "description": "External brace to hold the anterior and posterior knee joint together, print two ",
       "authors": ["Spencer Lord", "Garrett Lord"],
       "creation_date": "2024-01-17",
       "file_format": "STL",
@@ -192,7 +192,7 @@
       "atomized_model_reference": 4,
       "model_version": 1.0,
       "dimensions": {
-        "length_mm": 101.6,
+        "length_x_mm": 101.6,
         "width_y_mm": 68.2,
         "height_z_mm": 34.1,
         "filament_length_m": 18.2,
@@ -223,7 +223,7 @@
     {
       "id": "project-3d-patella-reduction-011",
       "name": "Ratchet Wheel",
-      "description": "provides tension for tendon (elastic band) help hold axle shaft in the anterior portion of the upper and lower leg, need to print two",
+      "description": "Provides tension for tendon (elastic band) help hold axle shaft in the anterior portion of the upper and lower leg, need to print two",
       "authors": ["Spencer Lord", "Garrett Lord"],
       "creation_date": "2024-01-17",
       "file_format": "STL",
@@ -232,7 +232,7 @@
       "atomized_model_reference": 7,
       "model_version": 1.0,
       "dimensions": {
-        "length_mm": 41.7,
+        "length_x_mm": 41.7,
         "width_y_mm": 41.7,
         "height_z_mm": 15.9,
         "filament_length_m": 2.37,
