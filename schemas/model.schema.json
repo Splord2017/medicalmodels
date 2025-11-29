@@ -124,11 +124,6 @@
                 "description": "Length in millimeters (X-axis)",
                 "minimum": 0
               },
-              "length_mm": {
-                "type": "number",
-                "description": "Length in millimeters (alternative to length_x_mm)",
-                "minimum": 0
-              },
               "width_y_mm": {
                 "type": "number",
                 "description": "Width in millimeters (Y-axis)",
@@ -176,6 +171,12 @@
         "layer_height_mm",
         "infill_percent"
       ],
+      "printer": {
+        "enum": [
+          "Creality Ender 3", 
+          "Bambu Lab P1S 3d",
+        ]
+      },
       "properties": {
         "material": {
           "type": "string",
