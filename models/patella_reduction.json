@@ -242,6 +242,7 @@
     }
   ],
   "print_settings": {
+    "printer": "Creality Ender 3",
     "material": "PLA",
     "material_size_mm": 1.75,
     "color": "gray",
