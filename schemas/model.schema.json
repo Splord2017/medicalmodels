@@ -17,7 +17,7 @@
     "doi_nih_3dpx": {
       "type": "string",
       "description": "NIH 3D Print Exchange DOI identifier",
-      "pattern": "^\\s*10\\.60705/3dpx/[0-9]+\\.[0-9]+"
+      "pattern": "^\\s*10\\.60705/3dpx/[0-9]+\\.[0-9]+$"
     },
     "image_atomized": {
       "type": "array",
@@ -112,6 +112,7 @@
             "type": "object",
             "description": "Physical dimensions and printing specifications",
             "required": [
+              "length_x_mm",
               "width_y_mm",
               "height_z_mm",
               "filament_length_m",
@@ -149,15 +150,7 @@
                 "description": "Estimated print time in minutes",
                 "minimum": 0
               }
-            },
-            "anyOf": [
-              {
-                "required": ["length_x_mm"]
-              },
-              {
-                "required": ["length_mm"]
-              }
-            ]
+            }
           }
         }
       }
@@ -171,13 +164,11 @@
         "layer_height_mm",
         "infill_percent"
       ],
-      "printer": {
-        "enum": [
-          "Creality Ender 3", 
-          "Bambu Lab P1S 3d",
-        ]
-      },
       "properties": {
+        "printer": {
+          "type": "string",
+          "enum": ["Creality Ender 3", "Bambu Lab P1S 3d"]
+        },
         "material": {
           "type": "string",
           "description": "3D printing material type",
