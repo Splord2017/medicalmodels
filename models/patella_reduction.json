@@ -13,9 +13,8 @@
   ],
   "purchase_materials": "Patella_Reduction_Purchases_Itemized.xlsx",
   "keywords": [
-    "Patella dislocation ICD10": ["S83.0" "M22.0"],
-    "CPT code": ["27560, 27562",
-    "3D-printing", "patellar dislocation", "joint dislocation", "patellofemoral joint", "patellar ligament", "joint instability", "knee injuries", "emergency treatment", "orthopedic manipulation",
+    "ICD10:S83.0", "ICD10:M22.0", "CPT:27560", "CPT:27562",
+    "3D-printing", "additive manufacturing", "patellar dislocation", "joint dislocation", "patellofemoral joint", "patellar ligament", "joint instability", "knee injuries", "emergency treatment", "orthopedic manipulation",
     "simulation model"
   ],
   "abstract": "3D printed patella reduction model for medical training",
@@ -185,7 +184,7 @@
       "name": "Anterior Leg",
       "description": "Used for both the upper and lower anterior leg connects to the posterior leg via 4x #6-32 machine screws; print two components",
       "authors": ["Spencer Lord", "Garrett Lord"],
-      "creation_date": "2025-09-03",
+      "creation_date": "2024-01-17",
       "file_format": "STL",
       "file_name": "Anterior_Leg_V2.stl",
       "file_size_mb": 1.7,
