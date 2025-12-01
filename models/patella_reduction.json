@@ -13,9 +13,9 @@
   ],
   "purchase_materials": "Patella_Reduction_Purchases_Itemized.xlsx",
   "keywords": [
-    "Patella dislocation ICD10: S83.0",
-    "CPT code: 27560, 27562",
-    "3D-printing",
+    "Patella dislocation ICD10": ["S83.0" "M22.0"],
+    "CPT code": ["27560, 27562",
+    "3D-printing", "patellar dislocation", "joint dislocation", "patellofemoral joint", "patellar ligament", "joint instability", "knee injuries", "emergency treatment", "orthopedic manipulation",
     "simulation model"
   ],
   "abstract": "3D printed patella reduction model for medical training",
