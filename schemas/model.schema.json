@@ -95,7 +95,15 @@
           "name",
           "file_format",
           "file_name",
+          "layer_height_mm",
+          "wall_thickness",
+          "top_thickness_mm",
+          "bottom_thickness_mm",
+          "infill_percent",
+          "support",
+          "build_plate_adhesion_required",
           "dimensions"
+          "bed_glue"
         ],
         "properties": {
           "id": {
@@ -148,7 +156,114 @@
             "description": "Version number of the model",
             "minimum": 0
           },
-          "dimensions": {
+          "color": {
+          "type": "string",
+          "description": "Material color"
+        },
+          "layer_height_mm": {
+          "type": "number",
+          "description": "Layer height in millimeters",
+          "minimum": 0.05,
+          "maximum": 0.5
+        },
+        "wall_thickness": {
+          "type": "number",
+          "description": "Wall thickness in millimeters",
+          "minimum": 0
+        },
+        "wall_line_count": {
+          "type": "number",
+          "description": "Number of wall lines, when calculated by wall thickness rounded to nearest whole line",
+          "minimum": 0
+        },
+        "horizontal_expansion": {
+          "type": "number",
+          "description": "Offset applied to all polygons in each layer",
+          "minimum": 0
+        },
+        "top_thickness_mm": {
+          "type": "number",
+          "description": "Top layer thickness in millimeters",
+          "minimum": 0
+        },
+        "top_layers_count": {
+          "type": "number",
+          "description": "Number of top layers when calculated by top thickness rounded to nearest integer",
+          "minimum": 0
+        },
+        "bottom_thickness_mm": {
+          "type": "number",
+          "description": "Bottom layer thickness in millimeters",
+          "minimum": 0
+        },
+        "bottom_layers_count": {
+          "type": "number",
+          "description": "Number of bottom layers when calculated by bottom thickness rounded to nearest integer",
+          "minimum": 0
+        },
+          "infill_percent": {
+          "type": "number",
+          "description": "Infill density percentage (0-100)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "support_pattern": {
+          "type": "string",
+          "description": "Internal infill pattern",
+          "enum": [
+            "cubic",
+            "lines",
+            "triangles",
+            "trihexagon",
+            "grid",
+            "cubicsubdivision",
+            "octet",
+            "quartercubic",
+            "concentric",
+            "zigzag",
+            "cross",
+            "cross3d",
+            "gyroid",
+            "lightning"
+          ]
+        },
+        "support": {
+          "type": "object",
+          "description": "Support generation settings",
+          "properties": {
+            "generate_support": {
+              "type": "boolean",
+              "description": "Whether support generation is enabled"
+            },
+            "support_structure": {
+              "type": "string",
+              "description": "Description of the support structure (e.g., tree, normal)"
+            },
+            "support_placement": {
+              "type": "string",
+              "description": "Support placement (e.g., everywhere, build plate only)"
+            },
+            "support_overhang_angle_degree": {
+              "type": "number",
+              "description": "Overhang angle at which support is generated",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        },
+         "build_plate_adhesion_required": {
+          "type": "boolean",
+          "description": "Whether build plate adhesion features (brim/raft/skirt) are required"
+        },
+        "support_adhesion": {
+          "type": "string",
+          "description": "Type of build plate adhesion (e.g., brim, skirt, raft, none)"
+        },
+        "bed_glue": {
+          "type": "boolean",
+          "description": "Whether bed adhesive/glue is required"
+        },
+        "dimensions": {
             "type": "object",
             "description": "Physical dimensions and printing specifications",
             "required": [
@@ -236,18 +351,9 @@
         "printer",
         "material",
         "material_size_mm",
-        "color",
-        "layer_height_mm",
-        "wall_thickness",
-        "top_thickness_mm",
-        "bottom_thickness_mm",
-        "infill_percent",
-        "support",
-        "build_plate_adhesion_required",
         "nozzle_temp_celsius",
         "bed_temp_celsius",
         "extrusion_path_parameters",
-        "bed_glue",
         "fan_speed_percent",
         "nozzle_size"
       ],
@@ -275,109 +381,6 @@
           "type": "number",
           "description": "Filament diameter in millimeters",
           "enum": [1.75, 2.85, 3.0]
-        },
-        "color": {
-          "type": "string",
-          "description": "Material color"
-        },
-        "layer_height_mm": {
-          "type": "number",
-          "description": "Layer height in millimeters",
-          "minimum": 0.05,
-          "maximum": 0.5
-        },
-        "wall_thickness": {
-          "type": "number",
-          "description": "Wall thickness in millimeters",
-          "minimum": 0
-        },
-        "wall_line_count": {
-          "type": "number",
-          "description": "Number of wall lines, when calculated by wall thickness rounded to nearest whole line",
-          "minimum": 0
-        },
-        "horizontal_expansion": {
-          "type": "number",
-          "description": "Offset applied to all polygons in each layer",
-          "minimum": 0
-        },
-        "top_thickness_mm": {
-          "type": "number",
-          "description": "Top layer thickness in millimeters",
-          "minimum": 0
-        },
-        "top_layers_count": {
-          "type": "number",
-          "description": "Number of top layers when calculated by top thickness rounded to nearest integer",
-          "minimum": 0
-        },
-        "bottom_thickness_mm": {
-          "type": "number",
-          "description": "Bottom layer thickness in millimeters",
-          "minimum": 0
-        },
-        "bottom_layers_count": {
-          "type": "number",
-          "description": "Number of bottom layers when calculated by bottom thickness rounded to nearest integer",
-          "minimum": 0
-        },
-        "infill_percent": {
-          "type": "number",
-          "description": "Infill density percentage (0-100)",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "support_pattern": {
-          "type": "string",
-          "description": "Internal infill pattern",
-          "enum": [
-            "cubic",
-            "lines",
-            "triangles",
-            "trihexagon",
-            "grid",
-            "cubicsubdivision",
-            "octet",
-            "quartercubic",
-            "concentric",
-            "zigzag",
-            "cross",
-            "cross3d",
-            "gyroid",
-            "lightning"
-          ]
-        },
-        "support": {
-          "type": "object",
-          "description": "Support generation settings",
-          "properties": {
-            "generate_support": {
-              "type": "boolean",
-              "description": "Whether support generation is enabled"
-            },
-            "support_structure": {
-              "type": "string",
-              "description": "Description of the support structure (e.g., tree, normal)"
-            },
-            "support_placement": {
-              "type": "string",
-              "description": "Support placement (e.g., everywhere, build plate only)"
-            },
-            "support_overhang_angle_degree": {
-              "type": "number",
-              "description": "Overhang angle at which support is generated",
-              "minimum": 0,
-              "maximum": 90
-            }
-          }
-        },
-        "build_plate_adhesion_required": {
-          "type": "boolean",
-          "description": "Whether build plate adhesion features (brim/raft/skirt) are required"
-        },
-        "support_adhesion": {
-          "type": "string",
-          "description": "Type of build plate adhesion (e.g., brim, skirt, raft, none)"
         },
         "nozzle_size": {
           "type": "number",
@@ -426,10 +429,6 @@
               "minimum": 0
             }
           }
-        },
-        "bed_glue": {
-          "type": "boolean",
-          "description": "Whether bed adhesive/glue is required"
         },
         "fan_speed_percent": {
           "type": "number",
