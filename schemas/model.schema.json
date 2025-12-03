@@ -102,8 +102,8 @@
           "infill_percent",
           "support",
           "build_plate_adhesion_required",
+          "bed_glue",
           "dimensions"
-          "bed_glue"
         ],
         "properties": {
           "id": {
