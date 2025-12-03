@@ -4,7 +4,23 @@
   "title": "3D Printed Medical Model Schema",
   "description": "JSON schema for validating 3D printed medical model metadata",
   "type": "object",
-  "required": ["name", "license", "print_data", "print_settings"],
+  "required": [
+    "name",
+    "license",
+    "doi_nih_3dpx",
+    "image_atomized",
+    "image_assembly",
+    "purchase_materials",
+    "keywords",
+    "compatible_with",
+    "hazards",
+    "abstract",
+    "print_data",
+    "print_settings",
+    "computer_aided_design_software",
+    "slicer_software",
+    "postprocessing"
+  ],
   "properties": {
     "name": {
       "type": "string",
@@ -35,6 +51,10 @@
         "format": "uri"
       }
     },
+    "assembly_instructions": {
+      "type": "string",
+      "description": "Assembly instructions, or notes not covered in the assembly images/videos"
+    },
     "purchase_materials": {
       "type": "string",
       "description": "Reference to materials purchase list"
@@ -42,6 +62,20 @@
     "keywords": {
       "type": "array",
       "description": "Array of keywords and codes related to the model",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compatible_with": {
+      "type": "array",
+      "description": "Other models with compatible modular design",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hazards": {
+      "type": "array",
+      "description": "Potential hazards or safety considerations",
       "items": {
         "type": "string"
       }
@@ -56,7 +90,13 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "name", "file_format", "file_name", "dimensions"],
+        "required": [
+          "id",
+          "name",
+          "file_format",
+          "file_name",
+          "dimensions"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -81,7 +121,7 @@
           },
           "creation_date": {
             "type": "string",
-            "description": "Date when the component was created",
+            "description": "Date when the component was created (YYYY-MM-DD)",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           },
           "file_format": {
@@ -117,7 +157,11 @@
               "height_z_mm",
               "filament_length_m",
               "filament_mass_g",
-              "print_time_min"
+              "print_time_min",
+              "print_orientation_x_axis_mm",
+              "print_orientation_y_axis_mm",
+              "print_orientation_z_axis_mm",
+              "print_rotation_degrees"
             ],
             "properties": {
               "length_x_mm": {
@@ -140,6 +184,36 @@
                 "description": "Length of filament required in meters",
                 "minimum": 0
               },
+              "print_orientation_x_axis_mm": {
+                "type": "number",
+                "description": "Model position on X axis in millimeters",
+                "minimum": 0
+              },
+              "print_orientation_y_axis_mm": {
+                "type": "number",
+                "description": "Model position on Y axis in millimeters",
+                "minimum": 0
+              },
+              "print_orientation_z_axis_mm": {
+                "type": "number",
+                "description": "Model position on Z axis in millimeters",
+                "minimum": 0
+              },
+              "print_rotation_degrees": {
+                "type": "object",
+                "description": "Model rotation to fit printer or build support, in degrees",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "z": {
+                    "type": "number"
+                  }
+                }
+              },
               "filament_mass_g": {
                 "type": "number",
                 "description": "Mass of filament required in grams",
@@ -159,15 +233,28 @@
       "type": "object",
       "description": "3D printing settings and configuration",
       "required": [
+        "printer",
         "material",
         "material_size_mm",
+        "color",
         "layer_height_mm",
-        "infill_percent"
+        "wall_thickness",
+        "top_thickness_mm",
+        "bottom_thickness_mm",
+        "infill_percent",
+        "support",
+        "build_plate_adhesion_required",
+        "nozzle_temp_celsius",
+        "bed_temp_celsius",
+        "extrusion_path_parameters",
+        "bed_glue",
+        "fan_speed_percent",
+        "nozzle_size"
       ],
       "properties": {
         "printer": {
           "type": "string",
-          "enum": ["Creality Ender 3", "Bambu Lab P1S 3d"]
+          "description": "Printer make/model"
         },
         "material": {
           "type": "string",
@@ -204,24 +291,98 @@
           "description": "Wall thickness in millimeters",
           "minimum": 0
         },
-        "top_bottom_thickness_mm": {
+        "wall_line_count": {
           "type": "number",
-          "description": "Top and bottom layer thickness in millimeters",
+          "description": "Number of wall lines, when calculated by wall thickness rounded to nearest whole line",
+          "minimum": 0
+        },
+        "horizontal_expansion": {
+          "type": "number",
+          "description": "Offset applied to all polygons in each layer",
+          "minimum": 0
+        },
+        "top_thickness_mm": {
+          "type": "number",
+          "description": "Top layer thickness in millimeters",
+          "minimum": 0
+        },
+        "top_layers_count": {
+          "type": "number",
+          "description": "Number of top layers when calculated by top thickness rounded to nearest integer",
+          "minimum": 0
+        },
+        "bottom_thickness_mm": {
+          "type": "number",
+          "description": "Bottom layer thickness in millimeters",
+          "minimum": 0
+        },
+        "bottom_layers_count": {
+          "type": "number",
+          "description": "Number of bottom layers when calculated by bottom thickness rounded to nearest integer",
           "minimum": 0
         },
         "infill_percent": {
           "type": "number",
-          "description": "Infill percentage (0-100)",
+          "description": "Infill density percentage (0-100)",
           "minimum": 0,
           "maximum": 100
         },
-        "support_required": {
-          "type": "boolean",
-          "description": "Whether support material is required"
+        "support_pattern": {
+          "type": "string",
+          "description": "Internal infill pattern",
+          "enum": [
+            "cubic",
+            "lines",
+            "triangles",
+            "trihexagon",
+            "grid",
+            "cubicsubdivision",
+            "octet",
+            "quartercubic",
+            "concentric",
+            "zigzag",
+            "cross",
+            "cross3d",
+            "gyroid",
+            "lightning"
+          ]
         },
-        "raft_required": {
+        "support": {
+          "type": "object",
+          "description": "Support generation settings",
+          "properties": {
+            "generate_support": {
+              "type": "boolean",
+              "description": "Whether support generation is enabled"
+            },
+            "support_structure": {
+              "type": "string",
+              "description": "Description of the support structure (e.g., tree, normal)"
+            },
+            "support_placement": {
+              "type": "string",
+              "description": "Support placement (e.g., everywhere, build plate only)"
+            },
+            "support_overhang_angle_degree": {
+              "type": "number",
+              "description": "Overhang angle at which support is generated",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        },
+        "build_plate_adhesion_required": {
           "type": "boolean",
-          "description": "Whether a raft is required"
+          "description": "Whether build plate adhesion features (brim/raft/skirt) are required"
+        },
+        "support_adhesion": {
+          "type": "string",
+          "description": "Type of build plate adhesion (e.g., brim, skirt, raft, none)"
+        },
+        "nozzle_size": {
+          "type": "number",
+          "description": "Nozzle diameter in millimeters at the extruder end",
+          "minimum": 0
         },
         "nozzle_temp_celsius": {
           "type": "number",
@@ -235,18 +396,93 @@
           "minimum": 0,
           "maximum": 150
         },
+        "extrusion_path_parameters": {
+          "type": "object",
+          "description": "Settings related to extrusion path and speeds",
+          "properties": {
+            "line_width": {
+              "type": "number",
+              "description": "Width of the extruded line, usually close to nozzle diameter (mm)",
+              "minimum": 0
+            },
+            "flow": {
+              "type": "number",
+              "description": "Extrusion flow factor (percent)",
+              "minimum": 0
+            },
+            "print_speed_mm_s": {
+              "type": "number",
+              "description": "Print speed in mm/s",
+              "minimum": 0
+            },
+            "travel_speed_mm_s": {
+              "type": "number",
+              "description": "Travel move speed in mm/s",
+              "minimum": 0
+            },
+            "initial_layer_speed_mm_s": {
+              "type": "number",
+              "description": "Initial layer print speed in mm/s",
+              "minimum": 0
+            }
+          }
+        },
         "bed_glue": {
           "type": "boolean",
           "description": "Whether bed adhesive/glue is required"
         },
-        "computer_aided_design_software": {
-          "type": "string",
-          "description": "CAD software used to create the model"
-        },
-        "slicer_software": {
-          "type": "string",
-          "description": "Slicer software used to prepare the model for printing"
+        "fan_speed_percent": {
+          "type": "number",
+          "description": "Cooling fan speed as a percentage (0-100)",
+          "minimum": 0,
+          "maximum": 100
         }
+      }
+    },
+    "computer_aided_design_software": {
+      "type": "object",
+      "description": "CAD software used to create the model",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the CAD software"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version number of the CAD software",
+          "pattern": "^[0-9]+(\\.[0-9]+)*$"
+        }
+      }
+    },
+    "slicer_software": {
+      "type": "object",
+      "description": "Slicer software used to prepare the model for printing",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the slicer software"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version number of the slicer software",
+          "pattern": "^[0-9]+(\\.[0-9]+)*$"
+        }
+      }
+    },
+    "postprocessing": {
+      "type": "array",
+      "description": "Postprocessing steps applied after printing",
+      "items": {
+        "type": "string",
+        "description": "Description of a postprocessing action (e.g., sanding, support removal, painting)"
       }
     }
   }
