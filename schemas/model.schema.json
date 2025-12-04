@@ -16,10 +16,7 @@
     "hazards",
     "abstract",
     "print_data",
-    "print_settings",
-    "computer_aided_design_software",
-    "slicer_software",
-    "postprocessing"
+    "print_settings"
   ],
   "properties": {
     "name": {
@@ -96,7 +93,7 @@
           "file_format",
           "file_name",
           "layer_height_mm",
-          "wall_thickness",
+          "wall_thickness_mm",
           "top_thickness_mm",
           "bottom_thickness_mm",
           "infill_percent",
@@ -166,7 +163,7 @@
           "minimum": 0.05,
           "maximum": 0.5
         },
-        "wall_thickness": {
+        "wall_thickness_mm": {
           "type": "number",
           "description": "Wall thickness in millimeters",
           "minimum": 0
@@ -176,7 +173,7 @@
           "description": "Number of wall lines, when calculated by wall thickness rounded to nearest whole line",
           "minimum": 0
         },
-        "horizontal_expansion": {
+        "horizontal_expansion_mm": {
           "type": "number",
           "description": "Offset applied to all polygons in each layer",
           "minimum": 0
@@ -355,7 +352,10 @@
         "bed_temp_celsius",
         "extrusion_path_parameters",
         "fan_speed_percent",
-        "nozzle_size"
+        "nozzle_size_mm",
+        "computer_aided_design_software",
+        "slicer_software",
+        "postprocessing"
       ],
       "properties": {
         "printer": {
@@ -382,7 +382,7 @@
           "description": "Filament diameter in millimeters",
           "enum": [1.75, 2.85, 3.0]
         },
-        "nozzle_size": {
+        "nozzle_size_mm": {
           "type": "number",
           "description": "Nozzle diameter in millimeters at the extruder end",
           "minimum": 0
@@ -408,7 +408,7 @@
               "description": "Width of the extruded line, usually close to nozzle diameter (mm)",
               "minimum": 0
             },
-            "flow": {
+            "flow_percent": {
               "type": "number",
               "description": "Extrusion flow factor (percent)",
               "minimum": 0
