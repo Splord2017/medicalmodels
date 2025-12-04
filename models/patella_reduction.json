@@ -595,7 +595,7 @@
     "fan_speed_percent": 100,
     "computer_aided_design_software": {
       "name": "Rhinoceros",
-      "version": "V8"
+      "version": "8.0"
     },
     "slicer_software": {
       "name": "Ultimaker Cura",
