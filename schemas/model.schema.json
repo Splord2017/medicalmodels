@@ -352,10 +352,7 @@
         "bed_temp_celsius",
         "extrusion_path_parameters",
         "fan_speed_percent",
-        "nozzle_size_mm",
-        "computer_aided_design_software",
-        "slicer_software",
-        "postprocessing"
+        "nozzle_size_mm"
       ],
       "properties": {
         "printer": {
