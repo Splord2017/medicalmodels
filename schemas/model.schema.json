@@ -4,6 +4,7 @@
   "title": "3D Printed Medical Model Schema",
   "description": "JSON schema for validating 3D printed medical model metadata",
   "type": "object",
+
   "required": [
     "name",
     "license",
@@ -18,75 +19,78 @@
     "print_data",
     "print_settings"
   ],
+
   "properties": {
+
     "name": {
       "type": "string",
       "description": "Name of the 3D printed model"
     },
+
     "license": {
       "type": "string",
       "description": "License information for the model"
     },
+
     "doi_nih_3dpx": {
       "type": "string",
       "description": "NIH 3D Print Exchange DOI identifier",
       "pattern": "^\\s*10\\.60705/3dpx/[0-9]+\\.[0-9]+$"
     },
+
     "image_atomized": {
       "type": "array",
       "description": "Array of URLs to atomized/detailed images",
-      "items": {
-        "type": "string",
-        "format": "uri"
-      }
+      "items": { "type": "string", "format": "uri" }
     },
+
     "image_assembly": {
       "type": "array",
       "description": "Array of URLs to assembly images or videos",
-      "items": {
-        "type": "string",
-        "format": "uri"
-      }
+      "items": { "type": "string", "format": "uri" }
     },
+
     "assembly_instructions": {
       "type": "string",
       "description": "Assembly instructions, or notes not covered in the assembly images/videos"
     },
+
     "purchase_materials": {
       "type": "string",
       "description": "Reference to materials purchase list"
     },
+
     "keywords": {
       "type": "array",
       "description": "Array of keywords and codes related to the model",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
+
     "compatible_with": {
       "type": "array",
       "description": "Other models with compatible modular design",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
+
     "hazards": {
       "type": "array",
       "description": "Potential hazards or safety considerations",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
+
     "abstract": {
       "type": "string",
       "description": "Brief description of the model"
     },
+
     "print_data": {
       "type": "array",
       "description": "Array of individual 3D printable components",
       "minItems": 1,
+
       "items": {
         "type": "object",
+
         "required": [
           "id",
           "name",
@@ -102,167 +106,95 @@
           "bed_glue",
           "dimensions"
         ],
+
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the component",
-            "minLength": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the component"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the component and its assembly instructions"
-          },
+
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+
           "authors": {
             "type": "array",
-            "description": "Array of author names",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "minItems": 1
           },
+
           "creation_date": {
             "type": "string",
-            "description": "Date when the component was created (YYYY-MM-DD)",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           },
+
           "file_format": {
             "type": "string",
-            "description": "File format of the 3D model",
             "enum": ["STL", "OBJ", "PLY", "3MF", "AMF", "GCODE"]
           },
-          "file_name": {
-            "type": "string",
-            "description": "Name of the 3D model file"
-          },
-          "file_size_mb": {
-            "type": "number",
-            "description": "File size in megabytes",
-            "minimum": 0
-          },
+
+          "file_name": { "type": "string" },
+          "file_size_mb": { "type": "number", "minimum": 0 },
+
           "atomized_model_reference": {
             "type": "integer",
-            "description": "Reference number in the atomized model annotations",
             "minimum": 1
           },
-          "model_version": {
-            "type": "number",
-            "description": "Version number of the model",
-            "minimum": 0
-          },
-          "color": {
-          "type": "string",
-          "description": "Material color"
-        },
+
+          "model_version": { "type": "number", "minimum": 0 },
+
+          "color": { "type": "string" },
+
           "layer_height_mm": {
-          "type": "number",
-          "description": "Layer height in millimeters",
-          "minimum": 0.05,
-          "maximum": 0.5
-        },
-        "wall_thickness_mm": {
-          "type": "number",
-          "description": "Wall thickness in millimeters",
-          "minimum": 0
-        },
-        "wall_line_count": {
-          "type": "number",
-          "description": "Number of wall lines, when calculated by wall thickness rounded to nearest whole line",
-          "minimum": 0
-        },
-        "horizontal_expansion_mm": {
-          "type": "number",
-          "description": "Offset applied to all polygons in each layer",
-          "minimum": 0
-        },
-        "top_thickness_mm": {
-          "type": "number",
-          "description": "Top layer thickness in millimeters",
-          "minimum": 0
-        },
-        "top_layers_count": {
-          "type": "number",
-          "description": "Number of top layers when calculated by top thickness rounded to nearest integer",
-          "minimum": 0
-        },
-        "bottom_thickness_mm": {
-          "type": "number",
-          "description": "Bottom layer thickness in millimeters",
-          "minimum": 0
-        },
-        "bottom_layers_count": {
-          "type": "number",
-          "description": "Number of bottom layers when calculated by bottom thickness rounded to nearest integer",
-          "minimum": 0
-        },
+            "type": "number",
+            "minimum": 0.05,
+            "maximum": 0.5
+          },
+
+          "wall_thickness_mm": { "type": "number", "minimum": 0 },
+          "wall_line_count": { "type": "number", "minimum": 0 },
+
+          "horizontal_expansion_mm": { "type": "number", "minimum": 0 },
+
+          "top_thickness_mm": { "type": "number", "minimum": 0 },
+          "top_layers_count": { "type": "number", "minimum": 0 },
+
+          "bottom_thickness_mm": { "type": "number", "minimum": 0 },
+          "bottom_layers_count": { "type": "number", "minimum": 0 },
+
           "infill_percent": {
-          "type": "number",
-          "description": "Infill density percentage (0-100)",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "support_pattern": {
-          "type": "string",
-          "description": "Internal infill pattern",
-          "enum": [
-            "cubic",
-            "lines",
-            "triangles",
-            "trihexagon",
-            "grid",
-            "cubicsubdivision",
-            "octet",
-            "quartercubic",
-            "concentric",
-            "zigzag",
-            "cross",
-            "cross3d",
-            "gyroid",
-            "lightning"
-          ]
-        },
-        "support": {
-          "type": "object",
-          "description": "Support generation settings",
-          "properties": {
-            "generate_support": {
-              "type": "boolean",
-              "description": "Whether support generation is enabled"
-            },
-            "support_structure": {
-              "type": "string",
-              "description": "Description of the support structure (e.g., tree, normal)"
-            },
-            "support_placement": {
-              "type": "string",
-              "description": "Support placement (e.g., everywhere, build plate only)"
-            },
-            "support_overhang_angle_degree": {
-              "type": "number",
-              "description": "Overhang angle at which support is generated",
-              "minimum": 0,
-              "maximum": 90
-            }
-          }
-        },
-         "build_plate_adhesion_required": {
-          "type": "boolean",
-          "description": "Whether build plate adhesion features (brim/raft/skirt) are required"
-        },
-        "support_adhesion": {
-          "type": "string",
-          "description": "Type of build plate adhesion (e.g., brim, skirt, raft, none)"
-        },
-        "bed_glue": {
-          "type": "boolean",
-          "description": "Whether bed adhesive/glue is required"
-        },
-        "dimensions": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+
+          "support_pattern": {
+            "type": "string",
+            "enum": [
+              "cubic", "lines", "triangles", "trihexagon", "grid",
+              "cubicsubdivision", "octet", "quartercubic", "concentric",
+              "zigzag", "cross", "cross3d", "gyroid", "lightning"
+            ]
+          },
+
+          "support": {
             "type": "object",
-            "description": "Physical dimensions and printing specifications",
+            "properties": {
+              "generate_support": { "type": "boolean" },
+              "support_structure": { "type": "string" },
+              "support_placement": { "type": "string" },
+              "support_overhang_angle_degree": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 90
+              }
+            }
+          },
+
+          "build_plate_adhesion_required": { "type": "boolean" },
+
+          "support_adhesion": { "type": "string" },
+
+          "bed_glue": { "type": "boolean" },
+
+          "dimensions": {
+            "type": "object",
             "required": [
               "length_x_mm",
               "width_y_mm",
@@ -276,209 +208,125 @@
               "print_rotation_degrees"
             ],
             "properties": {
-              "length_x_mm": {
-                "type": "number",
-                "description": "Length in millimeters (X-axis)",
-                "minimum": 0
-              },
-              "width_y_mm": {
-                "type": "number",
-                "description": "Width in millimeters (Y-axis)",
-                "minimum": 0
-              },
-              "height_z_mm": {
-                "type": "number",
-                "description": "Height in millimeters (Z-axis)",
-                "minimum": 0
-              },
-              "filament_length_m": {
-                "type": "number",
-                "description": "Length of filament required in meters",
-                "minimum": 0
-              },
-              "print_orientation_x_axis_mm": {
-                "type": "number",
-                "description": "Model position on X axis in millimeters",
-                "minimum": 0
-              },
-              "print_orientation_y_axis_mm": {
-                "type": "number",
-                "description": "Model position on Y axis in millimeters",
-                "minimum": 0
-              },
-              "print_orientation_z_axis_mm": {
-                "type": "number",
-                "description": "Model position on Z axis in millimeters",
-                "minimum": 0
-              },
+              "length_x_mm": { "type": "number" },
+              "width_y_mm": { "type": "number" },
+              "height_z_mm": { "type": "number" },
+
+              "filament_length_m": { "type": "number" },
+              "filament_mass_g": { "type": "number" },
+              "print_time_min": { "type": "number" },
+
+              "print_orientation_x_axis_mm": { "type": "number" },
+              "print_orientation_y_axis_mm": { "type": "number" },
+              "print_orientation_z_axis_mm": { "type": "number" },
+
               "print_rotation_degrees": {
                 "type": "object",
-                "description": "Model rotation to fit printer or build support, in degrees",
                 "properties": {
-                  "x": {
-                    "type": "number"
-                  },
-                  "y": {
-                    "type": "number"
-                  },
-                  "z": {
-                    "type": "number"
-                  }
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "z": { "type": "number" }
                 }
-              },
-              "filament_mass_g": {
-                "type": "number",
-                "description": "Mass of filament required in grams",
-                "minimum": 0
-              },
-              "print_time_min": {
-                "type": "number",
-                "description": "Estimated print time in minutes",
-                "minimum": 0
               }
             }
           }
         }
       }
     },
+
     "print_settings": {
       "type": "object",
-      "description": "3D printing settings and configuration",
+
       "required": [
         "printer",
         "material",
         "material_size_mm",
+        "nozzle_size_mm",
         "nozzle_temp_celsius",
         "bed_temp_celsius",
         "extrusion_path_parameters",
         "fan_speed_percent",
-        "nozzle_size_mm"
+        "computer_aided_design_software",
+        "slicer_software",
+        "postprocessing"
       ],
+
       "properties": {
-        "printer": {
-          "type": "string",
-          "description": "Printer make/model"
-        },
+
+        "printer": { "type": "string" },
+
         "material": {
           "type": "string",
-          "description": "3D printing material type",
-          "enum": [
-            "PLA",
-            "ABS",
-            "PETG",
-            "TPU",
-            "NYLON",
-            "ASA",
-            "PC",
-            "PVA",
-            "HIPS"
-          ]
+          "enum": ["PLA", "ABS", "PETG", "TPU", "NYLON", "ASA", "PC", "PVA", "HIPS"]
         },
+
         "material_size_mm": {
           "type": "number",
-          "description": "Filament diameter in millimeters",
           "enum": [1.75, 2.85, 3.0]
         },
+
         "nozzle_size_mm": {
           "type": "number",
-          "description": "Nozzle diameter in millimeters at the extruder end",
           "minimum": 0
         },
+
         "nozzle_temp_celsius": {
           "type": "number",
-          "description": "Nozzle temperature in Celsius",
           "minimum": 150,
           "maximum": 300
         },
+
         "bed_temp_celsius": {
           "type": "number",
-          "description": "Bed temperature in Celsius",
           "minimum": 0,
           "maximum": 150
         },
+
         "extrusion_path_parameters": {
           "type": "object",
-          "description": "Settings related to extrusion path and speeds",
           "properties": {
-            "line_width": {
-              "type": "number",
-              "description": "Width of the extruded line, usually close to nozzle diameter (mm)",
-              "minimum": 0
-            },
-            "flow_percent": {
-              "type": "number",
-              "description": "Extrusion flow factor (percent)",
-              "minimum": 0
-            },
-            "print_speed_mm_s": {
-              "type": "number",
-              "description": "Print speed in mm/s",
-              "minimum": 0
-            },
-            "travel_speed_mm_s": {
-              "type": "number",
-              "description": "Travel move speed in mm/s",
-              "minimum": 0
-            },
-            "initial_layer_speed_mm_s": {
-              "type": "number",
-              "description": "Initial layer print speed in mm/s",
-              "minimum": 0
+            "line_width": { "type": "number", "minimum": 0 },
+            "flow_percent": { "type": "number", "minimum": 0 },
+            "print_speed_mm_s": { "type": "number", "minimum": 0 },
+            "travel_speed_mm_s": { "type": "number", "minimum": 0 },
+            "initial_layer_speed_mm_s": { "type": "number", "minimum": 0 }
+          }
+        },
+
+        "fan_speed_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+
+        "computer_aided_design_software": {
+          "type": "object",
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string" },
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)*$"
             }
           }
         },
-        "fan_speed_percent": {
-          "type": "number",
-          "description": "Cooling fan speed as a percentage (0-100)",
-          "minimum": 0,
-          "maximum": 100
-        }
-      }
-    },
-    "computer_aided_design_software": {
-      "type": "object",
-      "description": "CAD software used to create the model",
-      "required": [
-        "name",
-        "version"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the CAD software"
+
+        "slicer_software": {
+          "type": "object",
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string" },
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)*$"
+            }
+          }
         },
-        "version": {
-          "type": "string",
-          "description": "Version number of the CAD software",
-          "pattern": "^[0-9]+(\\.[0-9]+)*$"
+
+        "postprocessing": {
+          "type": "array",
+          "items": { "type": "string" }
         }
-      }
-    },
-    "slicer_software": {
-      "type": "object",
-      "description": "Slicer software used to prepare the model for printing",
-      "required": [
-        "name",
-        "version"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the slicer software"
-        },
-        "version": {
-          "type": "string",
-          "description": "Version number of the slicer software",
-          "pattern": "^[0-9]+(\\.[0-9]+)*$"
-        }
-      }
-    },
-    "postprocessing": {
-      "type": "array",
-      "description": "Postprocessing steps applied after printing",
-      "items": {
-        "type": "string",
-        "description": "Description of a postprocessing action (e.g., sanding, support removal, painting)"
       }
     }
   }
