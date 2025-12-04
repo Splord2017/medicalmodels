@@ -601,6 +601,6 @@
       "name": "Ultimaker Cura",
       "version": "5.10.1"
     },
-    "postprocessing": "trim and remove support and raft and clean grooves for nuts and screws"
+    "postprocessing": ["trim support", "remove adhesion", "clean grooves for nuts and screws"]
   }
 }
