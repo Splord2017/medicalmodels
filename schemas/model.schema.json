@@ -1,3 +1,4 @@
+
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "medical-models/model.schema.json",
@@ -23,63 +24,74 @@
   "properties": {
 
     "name": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "Name of the 3D printed model"
     },
 
     "license": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "License information for the model"
     },
 
-    "doi_nih_3dpx": {
+   "doi_nih_3dpx": {
+  "description": "NIH 3D Print Exchange DOI or accession identifier",
+  "anyOf": [
+    {
       "type": "string",
-      "description": "NIH 3D Print Exchange DOI identifier",
-      "pattern": "^\\s*10\\.60705/3dpx/[0-9]+\\.[0-9]+$"
+      "pattern": "^10\\.60705/3dpx/[0-9]+\\.[0-9]+$"
     },
+    {
+      "type": "string",
+      "pattern": "^3DPX-[0-9]{6}$"
+    },
+    {
+      "type": "null"
+    }
+  ]
+},
 
     "image_atomized": {
-      "type": "array",
+      "type": ["array", "null"],
       "description": "Array of URLs to atomized/detailed images",
       "items": { "type": "string", "format": "uri" }
     },
 
     "image_assembly": {
-      "type": "array",
+      "type": ["array", "null"],
       "description": "Array of URLs to assembly images or videos",
       "items": { "type": "string", "format": "uri" }
     },
 
     "assembly_instructions": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "Assembly instructions, or notes not covered in the assembly images/videos"
     },
 
     "purchase_materials": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "Reference to materials purchase list"
     },
 
     "keywords": {
       "type": "array",
       "description": "Array of keywords and codes related to the model",
-      "items": { "type": "string" }
+      "items": { "type": ["string", "null"] }
     },
 
     "compatible_with": {
       "type": "array",
       "description": "Other models with compatible modular design",
-      "items": { "type": "string" }
+      "items": { "type": ["string", "null"] }
     },
 
     "hazards": {
-      "type": "array",
+      "type": ["array", "null"],
       "description": "Potential hazards or safety considerations",
-      "items": { "type": "string" }
+      "items": { "type": ["string", "null"] }
     },
 
     "abstract": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "Brief description of the model"
     },
 
@@ -109,92 +121,99 @@
 
         "properties": {
 
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "description": { "type": "string" },
+          "id": { "type": ["string", "null"] },
+          "name": { "type": ["string", "null"] },
+          "description": { "type": ["string", "null"] },
 
           "authors": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": { "type": ["string", "null"] },
             "minItems": 1
           },
 
           "creation_date": {
+	   "anyOf":[
+            {
             "type": "string",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           },
+	  {
+	    "type": "null"
+	  }
+	]
+	},
 
           "file_format": {
-            "type": "string",
-            "enum": ["STL", "OBJ", "PLY", "3MF", "AMF", "GCODE"]
+            "type": ["string", "null"],
+            "enum": ["STL", "OBJ", "PLY", "3MF", "AMF", "GCODE", "none", null]
           },
 
-          "file_name": { "type": "string" },
-          "file_size_mb": { "type": "number", "minimum": 0 },
+          "file_name": { "type": ["string", "null"] },
+          "file_size_mb": { "type": ["number", "null"], "minimum": 0 },
 
           "atomized_model_reference": {
-            "type": "integer",
-            "minimum": 1
+            "type": ["string", "number", "null"],
+            "description": "Reference label linking the component to the atomized figure or file. May include numbers, letters, symbols, or other repository-specific identifiers."
           },
 
-          "model_version": { "type": "number", "minimum": 0 },
+          "model_version": { "type": ["number", "null"], "minimum": 0 },
 
-          "color": { "type": "string" },
+          "color": { "type": ["string", "null"] },
 
           "layer_height_mm": {
-            "type": "number",
+            "type": ["number", "null"],
             "minimum": 0.05,
             "maximum": 0.5
           },
 
-          "wall_thickness_mm": { "type": "number", "minimum": 0 },
-          "wall_line_count": { "type": "number", "minimum": 0 },
+          "wall_thickness_mm": { "type": ["number", "null"], "minimum": 0 },
+          "wall_line_count": { "type": ["number", "null"], "minimum": 0 },
 
-          "horizontal_expansion_mm": { "type": "number", "minimum": 0 },
+          "horizontal_expansion_mm": { "type": ["number", "null"], "minimum": 0 },
 
-          "top_thickness_mm": { "type": "number", "minimum": 0 },
-          "top_layers_count": { "type": "number", "minimum": 0 },
+          "top_thickness_mm": { "type": ["number", "null"], "minimum": 0 },
+          "top_layers_count": { "type": ["number", "null"], "minimum": 0 },
 
-          "bottom_thickness_mm": { "type": "number", "minimum": 0 },
-          "bottom_layers_count": { "type": "number", "minimum": 0 },
+          "bottom_thickness_mm": { "type": ["number", "null"], "minimum": 0 },
+          "bottom_layers_count": { "type": ["number", "null"], "minimum": 0 },
 
           "infill_percent": {
-            "type": "number",
+            "type": ["number", "null"],
             "minimum": 0,
             "maximum": 100
           },
 
           "support_pattern": {
-            "type": "string",
+            "type": ["string", "null"],
             "enum": [
               "cubic", "lines", "triangles", "trihexagon", "grid",
               "cubicsubdivision", "octet", "quartercubic", "concentric",
-              "zigzag", "cross", "cross3d", "gyroid", "lightning"
+              "zigzag", "cross", "cross3d", "gyroid", "lightning", "none", null
             ]
           },
 
           "support": {
             "type": "object",
             "properties": {
-              "generate_support": { "type": "boolean" },
-              "support_structure": { "type": "string" },
-              "support_placement": { "type": "string" },
+              "generate_support": { "type": ["boolean", "null"] },
+              "support_structure": { "type": ["string", "null"] },
+              "support_placement": { "type": ["string", "null"] },
               "support_overhang_angle_degree": {
-                "type": "number",
+                "type": ["number", "null"],
                 "minimum": 0,
                 "maximum": 90
               }
             }
           },
 
-          "build_plate_adhesion_required": { "type": "boolean" },
+          "build_plate_adhesion_required": { "type": ["boolean", "null"] },
 
-          "support_adhesion": { "type": "string" },
+          "support_adhesion": { "type": ["string", "null"] },
 
-          "bed_glue": { "type": "boolean" },
+          "bed_glue": { "type": ["boolean", "null"] },
 
           "dimensions": {
-            "type": "object",
+            "type": ["object", "null"],
             "required": [
               "length_x_mm",
               "width_y_mm",
@@ -208,24 +227,24 @@
               "print_rotation_degrees"
             ],
             "properties": {
-              "length_x_mm": { "type": "number" },
-              "width_y_mm": { "type": "number" },
-              "height_z_mm": { "type": "number" },
+              "length_x_mm": { "type": ["number", "null"] },
+              "width_y_mm": { "type": ["number", "null"] },
+              "height_z_mm": { "type": ["number", "null"] },
 
-              "filament_length_m": { "type": "number" },
-              "filament_mass_g": { "type": "number" },
-              "print_time_min": { "type": "number" },
+              "filament_length_m": { "type": ["number", "null"] },
+              "filament_mass_g": { "type": ["number", "null"] },
+              "print_time_min": { "type": ["number", "null"] },
 
-              "print_orientation_x_axis_mm": { "type": "number" },
-              "print_orientation_y_axis_mm": { "type": "number" },
-              "print_orientation_z_axis_mm": { "type": "number" },
+              "print_orientation_x_axis_mm": { "type": ["number", "null"] },
+              "print_orientation_y_axis_mm": { "type": ["number", "null"] },
+              "print_orientation_z_axis_mm": { "type": ["number", "null"] },
 
               "print_rotation_degrees": {
                 "type": "object",
                 "properties": {
-                  "x": { "type": "number" },
-                  "y": { "type": "number" },
-                  "z": { "type": "number" }
+                  "x": { "type": ["number", "null"] },
+                  "y": { "type": ["number", "null"] },
+                  "z": { "type": ["number", "null"] }
                 }
               }
             }
@@ -253,31 +272,32 @@
 
       "properties": {
 
-        "printer": { "type": "string" },
+        "printer": { "type": ["string", "null"] },
 
         "material": {
-          "type": "string",
-          "enum": ["PLA", "ABS", "PETG", "TPU", "NYLON", "ASA", "PC", "PVA", "HIPS"]
+          "type": ["array", "null"],
+	  "items": { "type": "string"
+	}
         },
 
         "material_size_mm": {
-          "type": "number",
-          "enum": [1.75, 2.85, 3.0]
+          "type": ["number", "null"],
+          "enum": [1.75, 2.85, 3.0, null]
         },
 
         "nozzle_size_mm": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 0
         },
 
         "nozzle_temp_celsius": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 150,
           "maximum": 300
         },
 
         "bed_temp_celsius": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 0,
           "maximum": 150
         },
@@ -285,16 +305,16 @@
         "extrusion_path_parameters": {
           "type": "object",
           "properties": {
-            "line_width": { "type": "number", "minimum": 0 },
-            "flow_percent": { "type": "number", "minimum": 0 },
-            "print_speed_mm_s": { "type": "number", "minimum": 0 },
-            "travel_speed_mm_s": { "type": "number", "minimum": 0 },
-            "initial_layer_speed_mm_s": { "type": "number", "minimum": 0 }
+            "line_width": { "type": ["number", "null"], "minimum": 0 },
+            "flow_percent": { "type": ["number", "null"], "minimum": 0 },
+            "print_speed_mm_s": { "type": ["number", "null"], "minimum": 0 },
+            "travel_speed_mm_s": { "type": ["number", "null"], "minimum": 0 },
+            "initial_layer_speed_mm_s": { "type": ["number", "null"], "minimum": 0 }
           }
         },
 
         "fan_speed_percent": {
-          "type": "number",
+          "type": ["number", "null"],
           "minimum": 0,
           "maximum": 100
         },
@@ -303,10 +323,17 @@
           "type": "object",
           "required": ["name", "version"],
           "properties": {
-            "name": { "type": "string" },
+            "name": { "type": ["string", "null"] },
             "version": {
+		"anyOf": [
+		{
               "type": "string",
               "pattern": "^[0-9]+(\\.[0-9]+)*$"
+		},
+		{
+		"type": "null"
+		}
+		]
             }
           }
         },
@@ -315,17 +342,24 @@
           "type": "object",
           "required": ["name", "version"],
           "properties": {
-            "name": { "type": "string" },
+            "name": { "type": ["string", "null"] },
             "version": {
+	    "anyOf": [
+		{
               "type": "string",
               "pattern": "^[0-9]+(\\.[0-9]+)*$"
+		},
+		{
+		"type": "null"
+		}
+		]
             }
           }
         },
 
         "postprocessing": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { "type": ["string", "null"] }
         }
       }
     }
