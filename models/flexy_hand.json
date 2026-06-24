@@ -1,5 +1,3 @@
-
-
 {
   "$schema": "../schemas/model.schema.json",
   "name": "Flexy Hand by Gyrobot Ltd",
@@ -25,9 +23,7 @@
     "self",
     "Limbitless arm for alex (https://www.thingiverse.com/thing:408641/files)"
   ],
-  "hazards": [
-    "none"
-  ],
+  "hazards": ["none"],
   "abstract": "This is not a work, designed, or invented by the UCF Armory. This is an original work by Mr. Steve Wood at Gyrobot Ltd. (http://www.thingiverse.com/thing:242639) Our team simply altered the hand to work in conjunction with our forearm, to provide what we feel is the best 3D printed, open-source, EMG arm-solution available.",
   "print_data": [
     {
@@ -78,7 +74,6 @@
         }
       }
     },
-
     {
       "id": "1-2",
       "name": "Thumb_Distal_Phalanx",
@@ -127,7 +122,6 @@
         }
       }
     },
-
     {
       "id": "2-1",
       "name": "Index_Proximal_Phalanx",
@@ -176,7 +170,6 @@
         }
       }
     },
-
     {
       "id": "2-2",
       "name": "Index_Middle_Phalanx",
@@ -225,7 +218,6 @@
         }
       }
     },
-
     {
       "id": "2-3",
       "name": "Index_Distal_Phalanx",
@@ -274,7 +266,6 @@
         }
       }
     },
-
     {
       "id": "3-1",
       "name": "Long Proximal Phalanx",
@@ -323,7 +314,6 @@
         }
       }
     },
-
     {
       "id": "3-2",
       "name": "Long_Middle_Phalanx",
@@ -372,7 +362,6 @@
         }
       }
     },
-
     {
       "id": "3-3",
       "name": "Long_Distal_Phalanx",
@@ -816,7 +805,7 @@
       "creation_date": "2014-03-14",
       "file_format": "STL",
       "file_name": "8.stl",
-      "file_size_mb": 0.010,
+      "file_size_mb": 0.01,
       "atomized_model_reference": "8",
       "model_version": 2.0,
       "color": "red",
@@ -857,7 +846,6 @@
       }
     }
   ],
-
   "print_settings": {
     "printer": "Thermoplastic extruder",
     "material": ["ABS", "Filaflex"],
@@ -881,6 +869,11 @@
       "name": "Slic3r",
       "version": null
     },
-    "postprocessing": ["trim support", "soap lubrication", "clean hinge with craft knife", "tie off tendon slip knot"]
+    "postprocessing": [
+      "trim support",
+      "soap lubrication",
+      "clean hinge with craft knife",
+      "tie off tendon slip knot"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'fs';
 import { join, resolve, dirname } from 'path';
-import Ajv from 'ajv';
+import Ajv, { type ErrorObject } from 'ajv';
 import addFormats from 'ajv-formats';
 
 describe('Model JSON Schema Validation', () => {
@@ -52,16 +52,16 @@ describe('Model JSON Schema Validation', () => {
         const modelDir = dirname(modelPath);
         const schemaPath = resolve(modelDir, schemaRelativePath);
 
-        // Load and compile the schema
         const schema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
-        const validate = ajv.compile(schema);
+        const validate =
+          (schema.$id && ajv.getSchema(schema.$id)) || ajv.compile(schema);
 
         // Validate the model data
         const valid = validate(modelData);
 
         if (!valid) {
           const errors = validate.errors
-            ?.map((err) => {
+            ?.map((err: ErrorObject) => {
               const path = err.instancePath || err.schemaPath;
               return `  - ${path}: ${err.message}`;
             })

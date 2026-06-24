@@ -581,7 +581,7 @@
 
   "print_settings": {
     "printer": "Creality Ender 3",
-    "material": "PLA",
+    "material": ["PLA"],
     "material_size_mm": 1.75,
     "nozzle_size_mm": 0.4,
     "nozzle_temp_celsius": 200,
